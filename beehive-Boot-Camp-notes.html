@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>beehive-Boot-Camp-notes</title>
+
+
+<style type="text/css">
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+
+body {
+    counter-reset: h1
+}
+
+h1 {
+    counter-reset: h2
+}
+
+h2 {
+    counter-reset: h3
+}
+
+h3 {
+    counter-reset: h4
+}
+
+h1:before {
+    counter-increment: h1;
+    content: counter(h1) ". "
+}
+
+h2:before {
+    counter-increment: h2;
+    content: counter(h1) "." counter(h2) ". "
+}
+
+h3:before {
+    counter-increment: h3;
+    content: counter(h1) "." counter(h2) "." counter(h3) ". "
+}
+
+h4:before {
+    counter-increment: h4;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". "
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Beehive Boot Camp</h1>
+
+<p><strong>A workshop on how to use the linux command line, our group&#39;s cluster, and the queueing system.</strong><br>
+Workshop date: 2020-05-13<br>
+Notes updated: 2020-05-25<br>
+<u>Author:</u> Adam Iaizzi   | <a href="mailto:iaizzi@bu.edu">iaizzi@bu.edu</a> | <a href="http://www.iaizzi.me">www.iaizzi.me</a><br>
+<a href="https://yingjerkao.gitlab.io/">Ying-Jer Kao Group</a><br>
+National Taiwan University</p>
+
+<h2 id="toc_1">Prerequisites:</h2>
+
+<p>There are a few things you will need to have ready <strong>before</strong> the workshop. Please make sure to give yourself some time to set these up. </p>
+
+<ol>
+<li>An account on <strong>beehive</strong>, if you do not have an account or know your password, contact Prof. Kao. </li>
+<li>A terminal/ssh client for your computer. (on macs and linux, this is built in, on windows, I recommend downloading <a href="https://www.putty.org/">putty</a>. )</li>
+<li>A FTP client for copying files to and from the server (Cyberduck on mac, ???? for windows).</li>
+</ol>
+
+<h2 id="toc_2">Outline</h2>
+
+<p>Today we will cover several topics with slides and then hands-on exercises. My goal is that you will know how to</p>
+
+<ul>
+<li>Log into the cluster or workstations</li>
+<li>Navigate using the command line</li>
+<li>Create, rename and copy files</li>
+<li>Run basic bash shell scripts</li>
+<li>Write a basic submission script</li>
+<li>Submit jobs to the queue</li>
+<li>Monitor the status of your jobs</li>
+<li>Log into and use the workstations </li>
+</ul>
+
+<p>Outline for today: </p>
+
+<ol>
+<li>Logging into the cluster</li>
+<li>Basic command line</li>
+<li>Bash shell scripts </li>
+<li>The queuing system</li>
+<li>Using workstations</li>
+</ol>
+
+<h1 id="toc_3">Using the terminal</h1>
+
+<h2 id="toc_4">Logging in</h2>
+
+<p>To get started, we first need to log into the cluster. </p>
+
+<p>On macOS or linux, open a terminal program and use the <code>ssh</code> (secure shell) command to log in: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">ssh username@beehive.phys.ntu.edu.tw</code></pre></div>
+
+<p>It will then ask you for your password. Type it in. If that is successful you should see the following text: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">ssh username@beehive.phys.ntu.edu.tw
+##Last login: Fri May  1 15:30:00 2020 from wlan15.cc.ntu.edu.tw
+##Rocks 7.0 (Manzanita)
+##Profile built 10:58 22-Feb-2018
+##
+##Kickstarted 12:15 22-Feb-2018
+##
+##-----------------------------
+##
+prompt$ 
+</code></pre></div>
+
+<p>If you are on a <strong>windows</strong> machine using an ssh client like putty, you should enter <code>beehive.phys.ntu.edu.tw</code> in the server field and your username and password when prompted. </p>
+
+<h3 id="toc_5">Passwordless login using public key</h3>
+
+<p>Rather than typing your password in every time you log in can use a <strong>public key.</strong> This key will work with <code>ssh</code>, <code>scp</code> and probably other commands. Since you won&#39;t be typing it all the time, you can choose a more complex (better) password. <a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">This setup is pretty easy,</a> and once it&#39;s done, you won&#39;t have do to it again. </p>
+
+<h2 id="toc_6">The command line</h2>
+
+<p>Now that you have logged into the server, you have access to a linux command line. By default, you will be in your <strong>home directory</strong>: <code>/home/username/</code> You can check the name of your current directory using the command <code>pwd</code> (for print working directory):  </p>
+
+<div><pre class="line-numbers"><code class="language-bash">pwd
+##/home/username</code></pre></div>
+
+<p><strong>Note</strong> You should be able to copy and paste my example commands into your terminal to run them. Line set off by <code>##</code> indicate the <strong>output</strong> you should expect from the commands. </p>
+
+<p>You can see what is in your home directory using the <code>ls</code> command. If this is your first time logging in, you won&#39;t see anything: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">ls
+##[nothing]</code></pre></div>
+
+<p>Let&#39;s create a file. Use the command 
+<code>touch my_test_file.txt</code> 
+to create an empty text file called <code>my_test_file.txt</code>. You should now see that file when you run <code>ls</code>. </p>
+
+<p>Before we go any further, let&#39;s copy the example scripts from my home directory to yours using this command</p>
+
+<div><pre class="line-numbers"><code class="language-bash">cp -r /home/iaizzi/bootCampEx . </code></pre></div>
+
+<p>These files are also available on <a href="https://github.com/adazi/bootCampEx">github</a>. To download from github, use the command</p>
+
+<div><pre class="line-numbers"><code class="language-bash">git clone https://github.com/adazi/bootCampEx.git</code></pre></div>
+
+<p>When you run <code>ls</code> you should see a new directory <code>bootCampEx/</code>. Change to that directory and view the files there. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">cd bootCampEx
+ls</code></pre></div>
+
+<h3 id="toc_7">Directories</h3>
+
+<p>Directories are separated by forward slashes <code>directory/subdirectory</code>. The top level directory is called <strong>root</strong>: <code>/</code> The location of a file can be specified with an <strong>absolute</strong> path (relatively to root) <code>/home/username/file.txt</code> or a <strong>relative</strong> path such as <code>../file.txt</code> (one level up from the current directory) or <code>~/dir1/file.txt</code>, where <code>~</code> represents the user&#39;s home directory. </p>
+
+<h3 id="toc_8">Tab completion and up arrow</h3>
+
+<p>Fortunately, you don&#39;t have to type all these commands all the way. The <strong>tab</strong> key will autocomplete a partially-typed command or filename. You can also use the <strong>up arrow</strong> key to reuse previously-typed commands. </p>
+
+<p>You can also use <code>!!</code> to get the previous command and <code>!$</code> to get the first argument from the previous command. </p>
+
+<h2 id="toc_9">Basic Bash commands:</h2>
+
+<h3 id="toc_10">Navigation</h3>
+
+<div><pre class="line-numbers"><code class="language-bash">ls              # list files in current directory
+ls -l           # view files with more information
+ls -a           # view hidden files (files that start with .)
+pwd             # full path of current directory
+cd dir1         # move to directory dir1
+cd ../          # move to parent directory
+cd              # move to home directory
+mkdir dir1  # create a new directory called dir1</code></pre></div>
+
+<h3 id="toc_11">Viewing/editing files</h3>
+
+<div><pre class="line-numbers"><code class="language-bash">cat file1           # writes contents of file to screen
+head [-n 5] file1   # prints first 5 lines of file
+tail [-n 5] file1   # prints last 5 lines of file
+more file1          # scroll through contents of file
+emacs file1         # open file in emacs (text editor) OR
+nano file1          # open file in nano (easier text editor)</code></pre></div>
+
+<p>For editing files: If you are already familiar with <code>emacs</code> or <code>vi</code>, go ahead and use that. If you are not familiar with either, <code>nano</code> provides an intuitive user interface. </p>
+
+<h3 id="toc_12">Create, copy, move files</h3>
+
+<div><pre class="line-numbers"><code class="language-bash">touch file1     # create empty file file1
+cp file1 file2  # copy file1 to file2
+mv file1 dir1/  # move file1 into dir1
+mv file1 file2  # rename file1 to file2
+rm file1        # delete file1 (cannot be undone)</code></pre></div>
+
+<p>To copy a file from <code>dir1/file1.txt</code> to <code>dir2/</code> use the command</p>
+
+<p><code>cp dir1/file1.txt dir2/file2.txt</code>
+If you don&#39;t want to change the name of the file, you can simply use </p>
+
+<p><code>cp dir1/file1.txt dir2/</code>
+<code>mv</code> works in much the same way. </p>
+
+<p><strong>CAUTION:</strong> These commands do what you tell them. It is very easy to overwrite or delete important files if you are not careful. </p>
+
+<h3 id="toc_13">Wildcards</h3>
+
+<p>The wildcards <code>*</code> and <code>?</code> allow you to look for files matching a set of conditions. <code>*</code> stands in for <strong>any</strong> number of <strong>any</strong> character. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">ls *.txt
+##numbers.txt  some_text.txt
+ls *_*.txt
+##some_text.txt</code></pre></div>
+
+<p><code>?</code> stands in for <strong>exactly one</strong> wildcard character. Useful if files are formatted a specific way. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">ls *.??
+##clean.sh  helloWorld.sh  my_first_script.sh  startJobs.sh</code></pre></div>
+
+<h3 id="toc_14">Other useful linux commands</h3>
+
+<p><code>du -sh *</code> To see how much disk space is being used by files in the current directory.<br>
+<code>man</code> command will show you documentation for any command, for example <code>man cp</code> will list all the options for the <code>cp</code> command.  </p>
+
+<p>Resources/tips: </p>
+
+<ul>
+<li>(<a href="https://explainshell.com/">https://explainshell.com/</a>) Will explain what each flag in a command does </li>
+<li><a href="https://www.unixtutorial.org/basic-unix-commands">More unix commands</a></li>
+<li>Bear in mind, no one remembers all these things. You just need to remember enough to google the rest. <a href="https://xkcd.com/1168/">see XKCD</a></li>
+</ul>
+
+<h3 id="toc_15"><mark><u>Exercise 1:</u></mark> Making a new directory</h3>
+
+<p>Make a new directory called <code>dir1</code> and copy all files ending in .txt into that directory. (Hint: use the <code>*</code> wildcard.) </p>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-1-making-a-new-directory">Solution</a></p>
+
+<h2 id="toc_16">Redirecting output and chaining commands together</h2>
+
+<h3 id="toc_17">Pipe</h3>
+
+<p>The most powerful thing about the linux commands is that you can <strong>chain them together</strong> to do complicated things. </p>
+
+<p>We have the file <code>numbers.txt</code> with the numbers 1-100. Take a look using <code>cat numbers.txt</code> </p>
+
+<p>If we only want to entries with the number 8 in them we can use <code>grep</code> </p>
+
+<div><pre class="line-numbers"><code class="language-bash">cat numbers.txt | grep 8</code></pre></div>
+
+<p><code>|</code> is the <strong>pipe</strong> command, which takes the output from one command and sends it as input to the next command. The pipe is really powerful because it allows you to string unix tools together to do complicated things. </p>
+
+<p>If we only want the first 3 numbers that have the number 8 in them, we can use another pipe and the <code>head</code> command: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">cat numbers.txt | grep 8 | head -n 3</code></pre></div>
+
+<h3 id="toc_18">Redirect to file</h3>
+
+<p>If we  want to save the output of our command to a file we can use a <strong>redirect</strong>. 
+Let&#39;s take that list of the first three numbers with 8 in them and send it to a file called <code>res.txt</code>:</p>
+
+<div><pre class="line-numbers"><code class="language-bash">cat numbers.txt | grep 8 | head -n 3 &gt; res.txt
+cat res.txt
+##8
+##18
+##28</code></pre></div>
+
+<p>here <code>&gt; res.txt</code> writes the output to the file <code>res.txt</code> <strong>overwriting</strong> the previous contents. We can also use <code>&gt;&gt;</code> to <strong>append</strong> text to the end of the file. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">cat numbers.txt | grep 8 | head -n 3 &gt;&gt; res.txt
+cat res.txt
+##8
+##18
+##28
+##8
+##18
+##28</code></pre></div>
+
+<h3 id="toc_19"><mark><u>Exercise 2:</u></mark> Using pipe to string together unix commands</h3>
+
+<ol>
+<li>Write a one-liner that prints numbers that from the first 20 lines of <code>numbers.txt</code> that have the numeral 0 in them. </li>
+<li>Write a one liner that prints only the lines from <code>numbers.txt</code> that have <strong>both</strong> 2 and 8.<br></li>
+</ol>
+
+<div><pre class="line-numbers"><code class="language-none">Correct result for part 1:
+10
+20
+Correct result for part 2:
+28
+82</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-2-using-pipe-to-string-together-unix-commands">Solution</a></p>
+
+<h2 id="toc_20">Scripting</h2>
+
+<p>Bash is a complete programming language with loops, conditionals, variables among other things. It&#39;s very slow, but very powerful for automating tasks. A bash script is just a text file that contains a bunch of bash commands. The file must start with <code>#!/bin/bash</code> (this tell the command line which interpreter to use) and after that it is just a list of bash commands. <code>#</code> is the comment character. By convention, bash scripts end in <code>.sh</code></p>
+
+<p>Let&#39;s create your first bash script. Create a file called <code>my_first_script.sh</code> and copy the following text into it. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">#!/bin/bash
+echo &quot;Hey, you just ran a script!&quot;</code></pre></div>
+
+<p>Exit and save the file. </p>
+
+<h3 id="toc_21">Permissions and running</h3>
+
+<p>Right now, your bash script is just a text file. If you try to run it, you&#39;ll get an error: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">./my_first_script.sh
+##-bash: ./my_first_script.sh: Permission denied</code></pre></div>
+
+<p>Linux maintains a system of permissions to determine who can read, edit and run each file. <a href="https://www.guru99.com/file-permissions.html">More about file permissions.</a> You can see the permissions of the files in your working directory using the command  </p>
+
+<div><pre class="line-numbers"><code class="language-bash">ls -l
+##total 28
+##-rwxr--r-- 1 username users   34 May  1 16:50 helloWorld.sh
+##drwxr-xr-x 2 username users 4096 May  1 16:41 job_ex
+##-rw-r--r-- 1 username users   34 May 11 19:51 my_first_script.sh
+##-rw-r--r-- 1 username users  584 May  1 16:59 numbers.txt
+##-rw-r--r-- 1 username users  509 May  1 16:28 some_text.txt
+##-rwxr--r-- 1 username users  926 May  1 22:09 startJobs.sh</code></pre></div>
+
+<p>The first column of the output lists the permissions for each file. First is either <strong>d</strong> for directory or <strong>-</strong> for file. After that there are three sets of letters <strong>rwx</strong>. The first set is for the <strong>user</strong> (you), the second set is for the group (don&#39;t worry about this) and the last set is all (for any user on the system). <strong>r</strong> for read, <strong>w</strong> for write (or edit) and <strong>x</strong> for execute. </p>
+
+<p>Currently, the permissions for <code>my_first_script.sh</code> are <code>-rw-r--r--</code>, which means that it is a <em>file</em>, which <strong>I</strong> can read or write to and any other user can just read. To run it I have to add execute permissions for the <em>user</em> using the command </p>
+
+<div><pre class="line-numbers"><code class="language-bash">chmod u+x my_first_script.sh 
+ls -l my_first_script.sh 
+##-rwxr--r-- 1 iaizzi users 34 May 11 19:51 my_first_script.sh</code></pre></div>
+
+<p>Then I can run the script: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">./my_first_script.sh
+##Hey, you just ran a script!</code></pre></div>
+
+<p><u>Sidebar:</u> The &#39;all&#39; section of the permissions can be very useful. For example, you were all able to access and copy my <code>bootCampEx</code> directory in <strong>my</strong> home directory because I had given all users read permissions. Note also that your home directory is not very private because all users have read access by default. </p>
+
+<h3 id="toc_22">Printing to screen</h3>
+
+<p>You can print to screen with the <code>echo</code> command. Enclose strings in quotes. Use the </p>
+
+<div><pre class="line-numbers"><code class="language-bash">echo &quot;test&quot;
+##test
+echo &quot;test&quot; 1 &quot;another word&quot;
+##test 1 another word
+# use -e to allow formatting characters
+echo -e &quot;test\nnewline\ttab\n&quot;
+##test
+##newline       tab</code></pre></div>
+
+<h3 id="toc_23"><mark><u>Exercise 3:</u></mark> Write your own script</h3>
+
+<p>Modify <code>my_first_script.sh</code> so it prints your <q>Name&#39;s first shell script</q> and your current working directory to screen on separate lines. </p>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-3-write-your-own-script">Solution</a></p>
+
+<h3 id="toc_24">Variables</h3>
+
+<p>Variables are flexibly typed do not need to be initialized. Use <code>$</code> access the value of a variable. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">var1=5
+var2=&quot;a string&quot;
+echo var1 $var1 $var2
+##var1 5 a string</code></pre></div>
+
+<p>Arrays are enclosed in parentheses</p>
+
+<div><pre class="line-numbers"><code class="language-bash">list1=( 0 20 50 secret word)
+echo ${list1[0]} ${list1[4]}
+##0 word</code></pre></div>
+
+<h3 id="toc_25">Loops</h3>
+
+<p>Bash includes <strong>for</strong> and <strong>while</strong> loops. A for loop has the structure</p>
+
+<div><pre class="line-numbers"><code class="language-bash">for x in {1..5} #loop x from 1 to 5
+do
+    echo $x
+    for y in {10..14..3} #loop from 10 to 6 by 3s
+    do
+        echo -e &quot;\t&quot; $y
+    done
+done</code></pre></div>
+
+<p>The for loop can also loop over any list. You can manually list things: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">total=0
+for x in 0001 0002 0003 0004 0005
+do 
+    total=`expr $total + $x` #set total to the output from the command `expr...`
+    echo $x $total
+done</code></pre></div>
+
+<p>The for loop can also be over the output from a command. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">for x in `ls *.txt`
+do 
+    wc -l $x       #print the number of lines in each file matching *.txt
+done</code></pre></div>
+
+<h3 id="toc_26">Conditionals</h3>
+
+<p>Bash also has <a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html">if and if-else statements</a> that can check if a file exists, compare numerical values, etc. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">if [ $x -eq 4 ]
+then
+    echo &quot;x is 4&quot;
+else
+    echo &quot;x is not 4&quot;
+fi</code></pre></div>
+
+<h3 id="toc_27"><mark><u>Exercise 4:</u></mark> Loops and conditionals</h3>
+
+<p>Make a new script <code>oddsEvens.sh</code> that: loops over the numbers 1-30 and writes the even numbers into a file <code>evens.txt</code> and prints the odd numbers to screen. (Hint: <code>$((x%2))</code> will evaluate the variable x mod 2). </p>
+
+<p><strong>Bonus:</strong> Have your script use the contents of <code>numbers.txt</code> instead of looping over the numbers 1-30. </p>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-4-loops-and-conditionals">Solution</a></p>
+
+<h3 id="toc_28">Arguments</h3>
+
+<p>You can also pass arguments to your bash scripts like <code>./my_script.sh arg1 arg2</code>, but I will not cover that here. </p>
+
+<h3 id="toc_29">Making one-liners</h3>
+
+<p>You can combine multiple lines of bash script on the command line using the <code>;</code> to mark the end of the line. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">for x in {1..10}; do echo $x; echo &quot;--&quot;; done</code></pre></div>
+
+<h3 id="toc_30"><mark><u>Exercise 5:</u></mark> One liners</h3>
+
+<p>Make a one-liner that writes the numbers 20-40 to a text file <code>res.txt</code> where each line says <code>20 21</code> <code>21 22</code>... <code>40 41</code>. (Hint: <code>$((x+3))</code> will evaluate the variable <code>x</code> plus 3). </p>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-5-one-liners">Solution</a></p>
+
+<h3 id="toc_31">An example script: startJobs.sh</h3>
+
+<p>I&#39;ve included an example of a script that I use in my research. startJobs.sh sets up my simulations. I can use this to start hundreds of jobs with a single command. </p>
+
+<ul>
+<li>Loops over system size, inverse temperature and field</li>
+<li>For each combination of parameters it
+
+<ul>
+<li>Makes a directory</li>
+<li>Copies source code to directory</li>
+<li>Generates the input file (read.in) with parameters</li>
+<li>Generates the submission script with an appropriate name</li>
+<li>Submits the job to the queue</li>
+</ul></li>
+</ul>
+
+<p>Just this one script does in minutes what would take me hours to do by hand. I have similar scripts that automate my data post-processing. The data processing itself is done with octave, but the data is moved around and the files are combined using a shell script that loops over hundreds of directories with the results of individual simulations and performs the analysis on each. (Note: I this script requires input files, which I have not provided, so it will not run on its own). </p>
+
+<h2 id="toc_32">Set up your environment and custom commands with <code>.bashrc</code></h2>
+
+<p>In your home directory there is a file called <code>.bashrc</code> (or <code>.bash_profile</code>, which is similar). This is essentially a bash script that is run every time you log in. You can use this file to set up your environment (such as adding things to the path, creating aliases, etc). There is some <a href="https://unix.stackexchange.com/questions/129143/what-is-the-purpose-of-bashrc-and-how-does-it-work">basic information about bashrc files here</a> and some <a href="https://www.tldp.org/LDP/abs/html/sample-bashrc.html">sample <code>.bashrc</code> files here</a>. </p>
+
+<p>For example, in my <code>.bashrc</code> file, I change my command line prompt to have say <q>username@host current_directory$</q>:</p>
+
+<div><pre class="line-numbers"><code class="language-bash">export PS1=&quot;[\u@\h \W]\$ &quot;</code></pre></div>
+
+<p>You can also create custom aliases--short commands that stand in for something more complicated, for example, I set <code>emacs</code> to always open with the <code>-nw</code> flag (for no GUI), create a shortcut for logging into boromir, and a shortcut for viewing the whole queue (with everyone&#39;s jobs)</p>
+
+<div><pre class="line-numbers"><code class="language-bash">#no window for emacs
+alias emacs=&#39;emacs -nw&#39;
+# servers
+alias boromir=&#39;ssh -X boromir.phys.ntu.edu.tw`
+#queue
+alias jobs=&quot;qstat -u &#39;*&#39; &quot;</code></pre></div>
+
+<p>Now, for example, when I type <code>jobs</code> it&#39;s like I typed out <code>qstat -u &#39;*&#39;</code>. </p>
+
+<p><strong>Note:</strong> When you edit .bashrc, the changes won&#39;t appear until the next time you log in. You can activate them right away using the command <code>source .bashrc</code></p>
+
+<p><strong>Warning:</strong> <code>.bashrc</code> is run before you get to use the shell went logging in, so if you add a command that causes a problem, it might be hard for you to log in. There are flags you can use to log in without running <code>.bashrc</code>. </p>
+
+<hr>
+
+<h1 id="toc_33">Beehive and the Queue</h1>
+
+<h2 id="toc_34">Structure of beehive</h2>
+
+<p><img src="https://iaizzi.files.wordpress.com/2020/05/image-e1589292108197.jpg" alt="Beehive cluster" width="250"/></p>
+
+<p>Beehive uses scientific linux (CentOS 7). When you log into beehive you connect to the <strong>login</strong> node, called just <strong>beehive</strong>. This node is used by everyone for editing files, moving things around, and submitting jobs to the queue. It&#39;s fine for those things, but <strong>should not</strong> be used for any extended simulations. </p>
+
+<p><strong>Beehive login node:</strong>
+- 4-core Intel(R) Xeon(R)  E5620 (2010)
+- 8GB RAM</p>
+
+<p>The <strong>login</strong> node is in charge of all 14 <strong>compute</strong> nodes, where the jobs run. These nodes have between 8 and 28 cores and 8-128 GB of memory. In general, you don&#39;t need to worry about the specifics of the nodes because the queue will assign your job to an appropriate node for you. (The detailed specs are in the Appendix)</p>
+
+<p><strong>Compute nodes:</strong> </p>
+
+<ul>
+<li>compute-0-0.local</li>
+<li>compute-0-1.local</li>
+<li>compute-0-2.local</li>
+<li>compute-0-3.local</li>
+<li>compute-0-4.local</li>
+<li>compute-0-5.local</li>
+<li>compute-0-6.local</li>
+<li>compute-0-7.local</li>
+<li>compute-0-8.local</li>
+<li>compute-0-9.local</li>
+<li>compute-0-10.local</li>
+<li>compute-0-11.local</li>
+<li>compute-0-12.local</li>
+<li>compute-0-13.local</li>
+</ul>
+
+<h2 id="toc_35">How to use beehive</h2>
+
+<p>Here are some basic rules about how to use beehive:</p>
+
+<ol>
+<li>Use the log-in node for moving files around, compiling and very short tests of your code. </li>
+<li>If you have a longer calculation (more than a few minutes of CPU time), you should submit it to the queue so you don&#39;t clog up the login node. </li>
+<li>Be careful about how much disk space you use. The disk space on beehive is finite and shared between all users. If you&#39;re not careful, you can create huge numbers of files or huge files that use up massive amount of disk space. This could cause problems for other users if you end up filling up the whole drive. As a rule, you should have no problems if you keep the files in your home directory under 50GB. If you need more storage than that, talk to an admin. </li>
+<li>If you need to do complicated interactive jobs or extended testing, use the <strong>workstations</strong>. </li>
+<li>Be cautious about <strong>memory usage</strong>. The queue cannot enforce limits on memory. If your job requires more than 1gb of memory, ask an admin for advice. </li>
+</ol>
+
+<p><strong>Other tips:</strong></p>
+
+<ul>
+<li>If your job runs out of time, your program will be killed by the queue. Design your code so it easy to restart. </li>
+<li>The queue assigns priority based on how much time you are requesting and how many jobs you are currently running. If you request less time your jobs can jump ahead of long jobs. </li>
+</ul>
+
+<p><strong>Advantages of using a queuing system</strong></p>
+
+<ul>
+<li>Makes sure you get the resources (memory, CPU) that you need</li>
+<li>Starts and stops jobs automatically</li>
+<li>Jobs run in background, overnight, start whenever there are slots available</li>
+<li>No need to log into many different machines (queue does that for you)</li>
+<li>Automation </li>
+</ul>
+
+<h3 id="toc_36">Checking the status of the queue</h3>
+
+<div><pre class="line-numbers"><code class="language-bash">qstat
+##job-ID  prior   name       user         state submit/start at     queue                          ##slots ja-task-ID 
+##-----------------------------------------------------------------------------------------------------------------
+##  19352 0.55500 hw4-test   someone        r     05/11/2020 20:07:16 cpu_short@compute-0-13.local       1        </code></pre></div>
+
+<p>We have (from left to right) the job ID, the priority (assigned by the queue based on your usage, lower is better), job name, user, state (r=running, qw=waiting), submit/start time, node, # of processors. </p>
+
+<p>If you want to see jobs from <strong>all</strong> users, you use the command <code>qstat -u &#39;*&#39;</code></p>
+
+<h3 id="toc_37">Submitting your first job</h3>
+
+<p>To submit a job to the queue, you use the <code>qsub</code> command </p>
+
+<div><pre class="line-numbers"><code class="language-bash">qsub script.sh</code></pre></div>
+
+<p>where <code>script.sh</code> is a bash script that sets up and runs your actual program. </p>
+
+<p>I have an example code and submission script in <code>bootCampEx/job_ex/</code>. This folder contains two things: 
+<code>ex-hw4.f90</code> -- a Fortran program that does some calculation 
+<code>runFile.sh</code> -- the submission script 
+Before I explain the submission script, let&#39;s all try starting our first job:</p>
+
+<div><pre class="line-numbers"><code class="language-bash">qsub runFile.sh
+##Your job 19353 (&quot;TestName&quot;) has been submitted</code></pre></div>
+
+<p>Everyone try this now. Once you&#39;re done, use <code>qsub</code> to see your job running <strong>and</strong> everyone else&#39;s job. </p>
+
+<p>Now let&#39;s take a look at <code>runFile.sh</code>:</p>
+
+<div><pre class="line-numbers"><code class="language-bash">#!/bin/bash -l
+#choose which queue to submit to
+#$ -q cpu_short
+#set a time limit (in hours)
+#$ -l h_rt=1:00:00
+# start the job in the current working directory
+#$ -cwd
+# set the name of the job
+#$ -N TestName
+echo &quot;Job started on `hostname` at `date`&quot;
+echo &quot;compile code &quot;
+gfortran ex-hw4.f90
+echo &quot;start job&quot; 
+time ./a.out  &gt; log.txt
+echo &quot; &quot;
+echo &quot;Job ended at `date`&quot;</code></pre></div>
+
+<p>Line 1 is the standard beginning of a bash script. Then we have a series of commands for the queue, these always start with <code>#$</code> so they appears as <strong>comments</strong> to bash. 
+<code>#$ -q cpu_short</code> means we want this job to be sent to the queue <q>cpu_short</q> <a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#beehive-queues">More information on available queues</a><br>
+<code>#$ -l h_rt=1:00:00</code> set the time limit for this job to be 1 hour <strong>wall clock time</strong><br>
+<code>#$ -cwd</code> means we want the job to run in the current working directory (where we executed <code>qsub</code>)<br>
+<code>#$ -N TestName</code> sets the name of the job to <q>TestName</q>, this is optional, but it&#39;s useful when you have a lot of jobs to know what they each do  </p>
+
+<p>From line <strong>10</strong> on it is just an ordinary shell script that compiles and runs the program. (You can compile the program in advance if you want). </p>
+
+<p>Now let&#39;s look at the <strong>output</strong> from running our job. There are a bunch of data files (don&#39;t worry about those). There are also two log files generated by the queue: 
+<code>TestName.o19353</code> -- the stdout from <code>runFile.sh</code>:  </p>
+
+<div><pre class="line-numbers"><code class="language-none">Job started on compute-0-10.local at Mon May 11 20:19:31 CST 2020
+compile code 
+start job
+ 
+Job ended at Mon May 11 20:24:13 CST 2020</code></pre></div>
+
+<p>and <code>TestName.e19353</code> the stderr from <code>runFile.sh</code>: </p>
+
+<div><pre class="line-numbers"><code class="language-none">real    4m41.941s
+user    4m41.905s
+sys 0m0.002s</code></pre></div>
+
+<p>From this we can see that our job ran, it compiled and ran the program with no errors, and the program ran for about 5 minutes. </p>
+
+<h4 id="toc_38"><mark><u>Exercise 6:</u></mark> Modify runFile.sh (5 minutes)</h4>
+
+<p>Modify runFile.sh:</p>
+
+<ul>
+<li>Change the job name to something more descriptive</li>
+<li>Change the time limit to two hours</li>
+<li>Have the script write the contents of the directory to the log file</li>
+</ul>
+
+<p>Then use <code>qsub</code> to submit your job and <code>qstat -j job_number</code> to check on it. </p>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-6-modify-runfilesh">Solution</a></p>
+
+<h4 id="toc_39"><mark><u>Exercise 7:</u></mark> Make a second job directory</h4>
+
+<ol>
+<li>Create a new directory in <code>bootCampEx</code> called <code>new_job</code></li>
+<li>Copy <code>ex-hw4.f90</code> and <code>runFile.sh</code> into the new directory. </li>
+<li>Change the job name in <code>runFile.sh</code> in <code>new_job/</code> </li>
+<li>Submit both <code>job_ex/runFile.sh</code> and <code>new_job/runFile.sh</code> </li>
+<li>Confirm that they are both running in the queue with <code>qstat</code></li>
+</ol>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-7-make-a-second-job-directory">Solution</a></p>
+
+<h3 id="toc_40">Advanced use of queue:</h3>
+
+<div><pre class="line-numbers"><code class="language-bash">qdel job_ID     #to delete jobs
+qhold job_ID        #to pause a job (while its waiting to run)
+qrls job_ID     #release your job from a hold</code></pre></div>
+
+<p>If you have many jobs, you may need to use this commands with a loop in a one liner format, e.g. <code>for x in {firstjob..lastjob}; do qdel $x; done</code>. If you want to delete all your jobs, use <code>qdel -u username</code></p>
+
+<p>Running parallel/GPU jobs requires other flags in your submission script, talk to an admin if you need to do this. </p>
+
+<h3 id="toc_41">Environment variables</h3>
+
+<p>When your job is running, it will have access to certain <strong>environment variables</strong> that can tell you where the job is, what machine it&#39;s running on, etc. 
+For example, if you wanted to know from what directory your job was submitted (where you executed <code>qsub ...</code>), you can add <code>echo $SGE_O_WORKDIR</code> to your submission script. Or you could use <code>echo $HOSTNAME</code> to tell which node your job actually ran on. This can be very useful if certain nodes cause errors in your code. </p>
+
+<p>The full list of environment variables for SGE can be found <a href="https://docs.oracle.com/cd/E19957-01/820-0699/chp4-21/index.html">here</a>. </p>
+
+<h2 id="toc_42">Beehive etiquette</h2>
+
+<ul>
+<li>Keep your home directory under 50 GB (check with <code>du -sh *</code>)</li>
+<li>Do <strong>not</strong> run jobs on login node</li>
+<li>Be careful about memory usage</li>
+<li>Use the queue</li>
+<li>Don&#39;t be afraid to use a lot. Idle CPUs are wasted CPUs</li>
+<li><strong>NO BITCOIN OR CRYPTOCURRENCY MINING</strong> </li>
+<li>If something seems broken, contact an admin for help. </li>
+</ul>
+
+<hr>
+
+<h1 id="toc_43">Workstations</h1>
+
+<p>The workstations are basically ordinary desktop computers that you can log into for running calculations that are too intense for your laptop. The workstations do not have a queueing systems. Your account (username/password) on the workstations are the same as for beehive, but your account data <strong>is not synchronized</strong>. Crucially, the data on the workstations <strong>is not backed up</strong> so you must do your own backups (to beehive or your own computer). </p>
+
+<h2 id="toc_44">List of workstations:</h2>
+
+<p><strong>aragorn</strong></p>
+
+<ul>
+<li>8-core Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz</li>
+<li>62 GB RAM</li>
+<li>GPU 0: GeForce GTX 1660 SUPER</li>
+<li>GPU 1: GeForce RTX 2080 Ti</li>
+</ul>
+
+<p><strong>boromir</strong></p>
+
+<ul>
+<li>12-core Intel(R) Core(TM) i7-6850K CPU @ 3.60GHz</li>
+<li>31 GB RAM</li>
+<li>GPU 0: GeForce GTX 980</li>
+<li>GPU 1: GeForce GTX 1080 Ti</li>
+</ul>
+
+<p><strong>legolas</strong></p>
+
+<p><strong>gimli</strong> </p>
+
+<h2 id="toc_45">Using workstations</h2>
+
+<p>Log in just like you would any other system. Today we will use <strong>aragorn</strong></p>
+
+<div><pre class="line-numbers"><code class="language-bash">ssh user@aragorn.phys.ntu.edu.tw</code></pre></div>
+
+<p>Now let&#39;s copy over our example exercises from the beehive using the <code>scp</code> (secure copy) command: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">scp -r beehive.phys.ntu.edu.tw:~/bootCampEx/ . </code></pre></div>
+
+<p><code>-r</code> is a <em>recursive</em> copy (allows you to copy folders)<br>
+<code>beehive.phys.ntu.edu.tw</code> the address of the other computer where the files are located<br>
+<code>~/bootCampEx/</code> source folder on remote machine (your home directory)<br>
+<code>.</code> copy destination (the current directory)  </p>
+
+<p>You can then use the command line just like you would on your own computer. Since these are a shared resource, however, you should be courteous of the other users. First check if anyone else is running things using the <code>top</code> command. </p>
+
+<div><pre class="line-numbers"><code class="language-bash">top - 16:09:27 up 49 days, 21:44,  1 user,  load average: 1.30, 1.27, 1.25
+Tasks: 257 total,   4 running, 253 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 12.5 us,  0.0 sy, 12.5 ni, 75.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 65721656 total, 52847068 free,  2627500 used, 10247088 buff/cache
+KiB Swap: 32964604 total, 32736508 free,   228096 used. 62457096 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                               
+13186 me        39  19   15076    796    628 R  99.7  0.0   0:17.59 a.out                                                 
+25143 someone   20   0   12704   1604   1232 R  99.7  0.0   4232:31 a.out   
+...</code></pre></div>
+
+<p>To leave the <code>top</code> interface, just hit <strong>q</strong>. </p>
+
+<h3 id="toc_46">Running jobs while logged out</h3>
+
+<p><strong>Problem:</strong> for long jobs, the program gets killed if I logout or my connection is interrupted. </p>
+
+<p><strong>Solution:</strong> Use the <code>nohup</code> command. </p>
+
+<p>Move to the <code>job_ex</code> directory and compile <code>ex-hw4.f90</code>  </p>
+
+<div><pre class="line-numbers"><code class="language-bash">cd bootCampEx/job_ex/
+gfortran ex-hw4.f90</code></pre></div>
+
+<p>Now run the job using <code>nohup</code></p>
+
+<div><pre class="line-numbers"><code class="language-bash">nohup ./a.out &amp;
+##[1] 13128
+##nohup: ignoring input and appending output to ‘nohup.out’</code></pre></div>
+
+<p>Adding an ampersand <code>&amp;</code> to the end of your command causes it to run in the background, and you get a command line back. If you forget to do this, you can use CTRL+Z and type <code>bg</code> and hit enter. Use the command <code>fg</code> to bring the job back to the foreground. </p>
+
+<p>If you run the <code>top</code> command, you should see your job running. </p>
+
+<p>Now log out (using <code>exit</code>) and log back in to check that your job is still running.   When the job ends you will see an output like this to the screen: </p>
+
+<div><pre class="line-numbers"><code class="language-none">[1]+  Done                    nohup time ./a.out</code></pre></div>
+
+<p>The output that would have normally gone to the screen goes to the file <code>nohup.out</code>. (see that with <code>cat nohup.out</code>)</p>
+
+<p>To <strong>view</strong> all the processes you are currently running, use top with the <code>-u</code> flag to sort by username and <code>-bn1</code> to generate output and exit immediately (rather than live updating). </p>
+
+<div><pre class="line-numbers"><code class="language-bash">top -bn1 -u username</code></pre></div>
+
+<p>To <strong>kill</strong> all the processes you have running in the background, you can use the command  </p>
+
+<div><pre class="line-numbers"><code class="language-bash">pkill -u username</code></pre></div>
+
+<h3 id="toc_47">Be <code>nice -19</code></h3>
+
+<p>When you&#39;re running anything long on the workstations, you should prepend <code>nice -19</code> to your command. This tells the computer that your job is low priority, so when other people log in to check on their jobs or edit files, it won&#39;t be super slow. </p>
+
+<p>For example:</p>
+
+<div><pre class="line-numbers"><code class="language-bash">nohup nice -19 ./a.out &amp;</code></pre></div>
+
+<p>This runs <code>a.out</code> at low priority using <code>nohup</code> (you can also use <code>nice</code> without nohup). </p>
+
+<h3 id="toc_48"><mark><u>Exercise 8:</u></mark> Start two jobs</h3>
+
+<p>On aragorn:</p>
+
+<ol>
+<li>Start <code>job_ex/runFile.sh</code> using <code>nohup</code> and <code>nice -19</code> (do <strong>not</strong> use <code>qsub</code>)</li>
+<li>Start <code>new_job/runFile.sh</code> using <code>nohup</code> and <code>nice -19</code></li>
+<li>Use <code>top</code> to check that both jobs are running. </li>
+<li>Log out of aragorn</li>
+<li>Log back in</li>
+<li>Check that both jobs are running again with <code>top</code></li>
+<li>Wait a few minutes and check that they have finished successfully. </li>
+</ol>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-8-start-two-jobs">Solution</a></p>
+
+<h2 id="toc_49">Workstation etiquette</h2>
+
+<ul>
+<li>Use <code>top</code> command to see who else is using the machine. </li>
+<li>Don&#39;t use the whole machine for a super long time (especially GPUs)</li>
+<li>Don&#39;t leave huge amounts of data in your home directory</li>
+<li><strong>NO BITCOIN OR CRYPTOCURRENCY MINING</strong> </li>
+<li>Use <code>nice -19</code></li>
+</ul>
+
+<hr>
+
+<h1 id="toc_50">Resources:</h1>
+
+<p>Here are some useful links if you need to learn more: </p>
+
+<ul>
+<li><a href="http://beehive.phys.ntu.edu.tw/ganglia/?r=hour&amp;cs=&amp;ce=&amp;m=load_one&amp;s=by+name&amp;c=Beehive&amp;tab=m&amp;vn=&amp;hide-hf=false">Beehive status/monitoring</a> </li>
+<li><a href="http://beehive.phys.ntu.edu.tw/dokuwiki/doku.php">Beehive documentation, list of queues, commands, etc</a> </li>
+<li><a href="https://unix.stackexchange.com/">Stack exchange Unix/Linux Q&amp;A</a> </li>
+<li><a href="https://explainshell.com/">ExplainShell.com - explains options for commands</a></li>
+<li><a href="https://linuxconfig.org/bash-scripting-tutorial-for-beginners">Bash Tutorial</a> </li>
+<li><a href="https://www.codecademy.com/learn/learn-the-command-line">CodeAcademy - Learn the command line</a></li>
+<li><a href="https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/">Set up passwordless login using a public key</a></li>
+</ul>
+
+<hr>
+
+<h1 id="toc_51">Appendix</h1>
+
+<h2 id="toc_52">Beehive queues</h2>
+
+<p>There are three queues on beehive. You can check the status and usage of the queues using the command</p>
+
+<div><pre class="line-numbers"><code class="language-bash">&gt; qstat -g c
+CLUSTER QUEUE                   CQLOAD   USED    RES  AVAIL  TOTAL  
+------------------------------------------------------------------
+cpu_long                          0.00      0      0     46     46 
+cpu_short                         0.01      0      0     94     94 
+gpu                               0.04      1      0     10     11 </code></pre></div>
+
+<p><strong>cpu_long</strong> </p>
+
+<ul>
+<li>46 cores</li>
+<li>No time limit</li>
+<li>Runs on slower/older nodes</li>
+</ul>
+
+<p><strong>cpu_short</strong> </p>
+
+<ul>
+<li>94 cores</li>
+<li>Time limit: 5 days (120 hours)</li>
+<li>Runs on faster/newer nodes</li>
+</ul>
+
+<p><strong>gpu</strong></p>
+
+<ul>
+<li>For jobs that require a GPU</li>
+<li>11 GPUs</li>
+<li>Unlimited time</li>
+<li>Nodes:
+
+<ul>
+<li>compute-0-9.local (3x Tesla M2090)</li>
+<li>compute-0-10.local (2x Tesla M2090)</li>
+<li>compute-0-11.local (1x Tesla K20c)</li>
+<li>compute-0-12.local (3x GeForce GTX 1080 Ti, 1x Tesla K40c)</li>
+</ul></li>
+</ul>
+
+<h2 id="toc_53">List of nodes and specs</h2>
+
+<p>Using the <code>qhost</code> command</p>
+
+<div><pre class="line-numbers"><code class="language-none">HOSTNAME       ARCH         NCPU NSOC NCOR NTHR    MEMTOT
+---------------------------------------------------------
+compute-0-0    lx-amd64        8    2    8    8     15.5G
+compute-0-1    lx-amd64        8    2    8    8     23.4G
+compute-0-2    lx-amd64        8    2    8    8     23.4G
+compute-0-3    lx-amd64        8    2    8    8     15.5G
+compute-0-4    lx-amd64        8    2    8    8      7.6G
+compute-0-5    lx-amd64        8    2    8    8      7.6G
+compute-0-6    lx-amd64        8    2    8    8      7.6G
+compute-0-7    lx-amd64        8    2    8    8      7.6G
+compute-0-8    lx-amd64        8    2    8    8      7.6G
+compute-0-9    lx-amd64        8    2    8    8     23.4G
+compute-0-10   lx-amd64        8    2    8    8     70.6G
+compute-0-11   lx-amd64        8    2    8    8     15.5G
+compute-0-12   lx-amd64       28    2   28   28    125.6G
+compute-0-13   lx-amd64       28    2   28   28     62.7G</code></pre></div>
+
+<h2 id="toc_54">Solutions to exercises</h2>
+
+<h3 id="toc_55">Solution to <mark><u>Exercise 1</u></mark>: Making a new directory</h3>
+
+<p><strong>Problem:</strong> Make a new directory called dir1 and copy all files ending in .txt into that directory. (Hint: use the * wildcard.) </p>
+
+<p><strong>Solution:</strong> From <code>bootCampEx/</code>, execute the following commands: </p>
+
+<div><pre class="line-numbers"><code class="language-bash">mkdir dir1
+cp *.txt dir1/
+ls dir1/</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-1-making-a-new-directory">Back to exercise 1</a></p>
+
+<h3 id="toc_56">Solution to <mark><u>Exercise 2</u></mark>: Using pipe to string together unix commands</h3>
+
+<p><strong>Problem:</strong></p>
+
+<ol>
+<li>Write a one-liner that prints numbers that from the first 20 lines of <code>numbers.txt</code> that have the numeral 0 in them. </li>
+<li>Write a one liner that prints only the lines from <code>numbers.txt</code> that have <strong>both</strong> 2 and 8.<br></li>
+</ol>
+
+<p><strong>Solution:</strong> </p>
+
+<div><pre class="line-numbers"><code class="language-bash">#part 1
+cat numbers.txt | head -n 20 | grep 0
+#part 2
+cat numbers.txt | grep 8 | grep 2</code></pre></div>
+
+<div><pre class="line-numbers"><code class="language-none">Correct result for part 1:
+10
+20
+Correct result for part 2:
+28
+82</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-2-using-pipe-to-string-together-unix-commands">Back to exericse 2</a></p>
+
+<h3 id="toc_57">Solution to <mark><u>Exercise 3</u></mark>: Write your own script</h3>
+
+<p><strong>Problem:</strong> Modify <code>my_first_script.sh</code> so it prints your <q>Name&#39;s first shell script</q> and your current working directory to screen on separate lines. </p>
+
+<p><strong>Solution:</strong> </p>
+
+<div><pre class="line-numbers"><code class="language-bash">#!/bin/bash
+
+echo &quot;Someone&#39;s first shell script!&quot;</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-3-write-your-own-script">Back to exercise 3</a></p>
+
+<h3 id="toc_58">Solution to <mark><u>Exercise 4</u></mark>: Loops and conditionals</h3>
+
+<p><strong>Problem:</strong> Make a new script oddsEvens.sh that: loops over the numbers 1-30 and writes the even numbers into a file evens.txt and prints the odd numbers to screen. (Hint: <code>$((x%2))</code> will evaluate the variable x mod 2).</p>
+
+<p><em>Bonus:</em> Have your script use the contents of numbers.txt instead of looping over the numbers 1-30. </p>
+
+<p><strong>Solution:</strong> The solution is in <code>bootCampEx/solutions/oddsEvens.sh</code></p>
+
+<div><pre class="line-numbers"><code class="language-bash">#!/bin/bash
+for x in {1..30}
+do
+    # if even
+    if [ $((x%2)) -eq 0 ]
+    then
+    echo $x &gt;&gt; evens.txt
+    else
+    echo $x &quot;is odd&quot;
+    fi
+done</code></pre></div>
+
+<p><em>Bonus:</em></p>
+
+<div><pre class="line-numbers"><code class="language-bash">#!/bin/bash
+for x in `head -n 30 numbers.txt`
+do
+    # if even
+    if [ $((x%2)) -eq 0 ]
+    then
+    echo $x &gt;&gt; evens.txt
+    else
+    echo $x &quot;is odd&quot;
+    fi
+done</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-4-loops-and-conditionals">Back to exercise 4</a></p>
+
+<h3 id="toc_59">Solution to <mark><u>Exercise 5</u></mark>: One liners</h3>
+
+<p><strong>Problem:</strong> Make a one-liner that writes the numbers 20-40 to a text file <code>res.txt</code> where each line says <code>20 21</code>, <code>21 22</code>,... <code>40 41</code>. (Hint: <code>$((x+3))</code> will evaluate the variable x plus 3). </p>
+
+<p><strong>Solution:</strong> </p>
+
+<div><pre class="line-numbers"><code class="language-bash">for x in {20..40}; do echo $x $((x+1)); done</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-5-one-liners">Back to exercise 5</a></p>
+
+<h3 id="toc_60">Solution to <mark><u>Exercise 6</u></mark>: Modify runFile.sh</h3>
+
+<p><strong>Problem:</strong> Modify <code>runFile.sh</code>:</p>
+
+<ul>
+<li>Change the job name to something more descriptive</li>
+<li>Change the time limit to two hours</li>
+<li>Have the script write the contents of the directory to the log file</li>
+</ul>
+
+<p>Then use <code>qsub</code> to submit your job and <code>qstat -j job_number</code> to check on it. </p>
+
+<p><strong>Solution:</strong> </p>
+
+<div><pre class="line-numbers"><code class="language-bash">#!/bin/bash -l
+#choose which queue to submit to
+#$ -q cpu_short
+#set a time limit (in hours)
+#$ -l h_rt=2:00:00
+# start the job in the current working directory
+#$ -cwd
+# set the name of the job
+#$ -N AnotherName
+
+echo &quot;Job started on `hostname` at `date`&quot;
+
+echo &quot;compile code &quot;
+gfortran ex-hw4.f90
+
+echo &quot;start job&quot; 
+
+time ./a.out  &gt; log.txt
+echo &quot; &quot;
+echo &quot;Job ended at `date`&quot;
+
+ls</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-6-modify-runfilesh-5-minutes">Back to exercise 6</a></p>
+
+<h3 id="toc_61">Solution to <mark><u>Exercise 7</u></mark>: Make a second job directory</h3>
+
+<p><strong>Problem:</strong></p>
+
+<ol>
+<li>Create a new directory in <code>bootCampEx</code> called <code>new_job</code></li>
+<li>Copy <code>ex-hw4.f90</code> and <code>runFile.sh</code> into the new directory. </li>
+<li>Change the job name in <code>runFile.sh</code> in <code>new_job/</code> </li>
+<li>Submit both <code>job_ex/runFile.sh</code> and <code>new_job/runFile.sh</code> </li>
+<li>Confirm that they are both running in the queue with <code>qstat</code></li>
+</ol>
+
+<p><strong>Solution:</strong> From <code>bootCampEx/</code></p>
+
+<div><pre class="line-numbers"><code class="language-bash">mkdir new_job
+cd new_job
+cp ../job_ex/runFile.sh .
+cp ../job_ex/ex-hw4.f90 .
+#use text editor to change name in runFile.sh
+qsub runFile.sh
+qstat</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-7-make-a-second-job-directory">Back to exercise 7</a></p>
+
+<h3 id="toc_62">Solution to <mark><u>Exercise 8:</u></mark> Start two jobs</h3>
+
+<p><strong>Problem:</strong> On aragorn:</p>
+
+<ol>
+<li>Start <code>job_ex/runFile.sh</code> using <code>nohup</code> and <code>nice -19</code></li>
+<li>Start <code>new_job/runFile.sh</code> using <code>nohup</code> and <code>nice -19</code></li>
+<li>Use <code>top</code> to check that both jobs are running. </li>
+<li>Log out of aragorn</li>
+<li>Log back in</li>
+<li>Check that both jobs are running again with <code>top</code></li>
+<li>Wait a few minutes and check that they have finished successfully. </li>
+</ol>
+
+<p><strong>Solution:</strong> Starting from <code>bootCampEx/</code></p>
+
+<div><pre class="line-numbers"><code class="language-bash">cd job_ex/
+nohup nice -19 ./runFile.sh &amp;
+cd ../new_job/
+nohup nice -19 ./runFile.sh &amp;
+top</code></pre></div>
+
+<p><a href="https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-8-start-two-jobs">Back to exercise 8</a></p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+!function(e){var t={variable:[{pattern:/\$?\(\([\w\W]+?\)\)/,inside:{variable:[{pattern:/(^\$\(\([\w\W]+)\)\)/,lookbehind:!0},/^\$\(\(/],number:/\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,operator:/--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,punctuation:/\(\(?|\)\)?|,|;/}},{pattern:/\$\([^)]+\)|`[^`]+`/,inside:{variable:/^\$\(|^`|\)$|`$/}},/\$(?:[a-z0-9_#\?\*!@]+|\{[^}]+\})/i]};e.languages.bash={shebang:{pattern:/^#!\s*\/bin\/bash|^#!\s*\/bin\/sh/,alias:"important"},comment:{pattern:/(^|[^"{\\])#.*/,lookbehind:!0},string:[{pattern:/((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,lookbehind:!0,inside:t},{pattern:/(["'])(?:\\\\|\\?[^\\])*?\1/g,inside:t}],variable:t.variable,"function":{pattern:/(^|\s|;|\||&)(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|\s|;|\||&)/,lookbehind:!0},keyword:{pattern:/(^|\s|;|\||&)(?:let|:|\.|if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)(?=$|\s|;|\||&)/,lookbehind:!0},"boolean":{pattern:/(^|\s|;|\||&)(?:true|false)(?=$|\s|;|\||&)/,lookbehind:!0},operator:/&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,punctuation:/\$?\(\(?|\)\)?|\.\.|[{}[\];]/};var a=t.variable[1].inside;a["function"]=e.languages.bash["function"],a.keyword=e.languages.bash.keyword,a.boolean=e.languages.bash.boolean,a.operator=e.languages.bash.operator,a.punctuation=e.languages.bash.punctuation}(Prism);
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/x-mathjax-config">
+(function () {
+
+MathJax.Hub.Config({
+	'showProcessingMessages': false,
+	'messageStyle': 'none'
+});
+
+if (typeof MathJaxListener !== 'undefined') {
+	MathJax.Hub.Register.StartupHook('End', function () {
+		MathJaxListener.invokeCallbackForKey_('End');
+	});
+}
+
+})();
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+
+</html>
