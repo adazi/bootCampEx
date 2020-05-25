@@ -1,10 +1,10 @@
 # Beehive Boot Camp 
-**A workshop on how to use the linux command line, our group's cluster, and the queueing system.**
-Workshop date: 2020-05-13
-Notes updated: 2020-05-25
+**A workshop on how to use the linux command line, our group's cluster, and the queueing system.** 
+Workshop date: 2020-05-13 
+Notes updated: 2020-05-25 
 
-_Author:_ Adam Iaizzi	| iaizzi@bu.edu | www.iaizzi.me
-[Ying-Jer Kao Group](https://yingjerkao.gitlab.io/)
+_Author:_ Adam Iaizzi	| iaizzi@bu.edu | www.iaizzi.me 
+[Ying-Jer Kao Group](https://yingjerkao.gitlab.io/) 
 National Taiwan University
 
 ## Prerequisites:
@@ -37,7 +37,7 @@ Outline for today:
 5. Using workstations
 
 
-#Using the terminal
+# Using the terminal
 
 ## Logging in
 
@@ -234,7 +234,7 @@ cat res.txt
 ##18
 ##28
 ```
-here `> res.txt` write the output to the file `res.txt` **overwriting** the previous contents. We can also use `>>` to **append** text to the end of the file. 
+here `> res.txt` writes the output to the file `res.txt` **overwriting** the previous contents. We can also use `>>` to **append** text to the end of the file. 
 
 ```bash
 cat numbers.txt | grep 8 | head -n 3 >> res.txt
@@ -260,9 +260,6 @@ Correct result for part 2:
 28
 82
 ```
-
-[](part 1:  cat numbers.txt | head -n 20 | grep 0)
-[](part 2: cat numbers.txt | grep 8 | grep 2)
 
 ## Scripting
 
@@ -427,8 +424,6 @@ for x in {1..10}; do echo $x; echo "--"; done
 
 Make a one-liner that writes the numbers 20-40 to a text file `res.txt` where each line says `20 21` `21 22`... `40 41`. (Hint: `$((x+3))` will evaluate the variable `x` plus 3). 
 
-[](solution: for x in {20..40}; do echo $x $((x+1)) >> res.txt; done)
-
 ### An example script: startJobs.sh
 
 I've included an example of a script that I use in my research. startJobs.sh sets up my simulations. I can use this to start hundreds of jobs with a single command. 
@@ -454,7 +449,7 @@ For example, in my `.bashrc` file, I change my command line prompt to have say "
 export PS1="[\u@\h \W]\$ "
 ```
 
-You can also create custom aliases---short commands that stand in for something more complicated, for example, I set `emacs` to always open with the `-nw` flag (for no GUI), create a shortcut for logging into boromir, and a shortcut for viewing the whole queue (with everyone's jobs)
+You can also create custom aliases--short commands that stand in for something more complicated, for example, I set `emacs` to always open with the `-nw` flag (for no GUI), create a shortcut for logging into boromir, and a shortcut for viewing the whole queue (with everyone's jobs)
 
 ```bash
 #no window for emacs
@@ -550,8 +545,8 @@ qsub script.sh
 where `script.sh` is a bash script that sets up and runs your actual program. 
 
 I have an example code and submission script in `bootCampEx/job_ex/`. This folder contains two things: 
-`ex-hw4.f90` -- a Fortran program that does some calculation
-`runFile.sh` -- the submission script
+`ex-hw4.f90` -- a Fortran program that does some calculation 
+`runFile.sh` -- the submission script 
 Before I explain the submission script, let's all try starting our first job:
 
 ```bash
@@ -582,10 +577,10 @@ echo " "
 echo "Job ended at `date`"
 ```
 Line 1 is the standard beginning of a bash script. Then we have a series of commands for the queue, these always start with `#$` so they appears as **comments** to bash. 
-`#$ -q cpu_short` means we want this job to be sent to the queue "cpu_short"
-`#$ -l h_rt=1:00:00` set the time limit for this job to be 1 hour **wall clock time**
-`#$ -cwd` means we want the job to run in the current working directory (where we executed `qsub`)
-`#$ -N TestName` sets the name of the job to "TestName", this is optional, but it's useful when you have a lot of jobs to know what they each do
+`#$ -q cpu_short` means we want this job to be sent to the queue "cpu_short" 
+`#$ -l h_rt=1:00:00` set the time limit for this job to be 1 hour **wall clock time** 
+`#$ -cwd` means we want the job to run in the current working directory (where we executed `qsub`) 
+`#$ -N TestName` sets the name of the job to "TestName", this is optional, but it's useful when you have a lot of jobs to know what they each do 
 
 From line **10** on it is just an ordinary shell script that compiles and runs the program. (You can compile the program in advance if you want). 
 
@@ -616,14 +611,14 @@ Modify runFile.sh:
 
  - Change the job name to something more descriptive
  - Change the time limit to two hours
- - Have the script write the contents of the directory to the logfile
+ - Have the script write the contents of the directory to the log file
 
 Then use `qsub` to submit your job and `qstat -j job_number` to check on it. 
  
 #### ==_Exercise 7:_== Make a second job directory
 
 1. Create a new directory in `bootCampEx` called `new_job`
-2. copy `ex-hw4.f90` and `runFile.sh` into the new directory. 
+2. Copy `ex-hw4.f90` and `runFile.sh` into the new directory. 
 3. Change the job name in `runFile.sh` in `new_job/` 
 4. Submit both `job_ex/runFile.sh` and `new_job/runFile.sh` 
 5. Confirm that they are both running in the queue with `qstat`
@@ -636,7 +631,7 @@ qhold job_ID		#to pause a job (while its waiting to run)
 qrls job_ID		#release your job from a hold
 ```
 
-If you have many jobs, you may need to use this commands with a loop in a oneliner format, e.g. `for x in {firstjob..lastjob}; do qdel $x; done`. If you want to delete all your jobs, use `qdel -u username`
+If you have many jobs, you may need to use this commands with a loop in a one liner format, e.g. `for x in {firstjob..lastjob}; do qdel $x; done`. If you want to delete all your jobs, use `qdel -u username`
 
 Running parallel/GPU jobs requires other flags in your submission script, talk to an admin if you need to do this. 
 
@@ -658,7 +653,6 @@ The full list of environment variables for SGE can be found [here](https://docs.
 - **NO BITCOIN OR CRYPTOCURRENCY MINING** 
 - If something seems broken, contact an admin for help. 
 
-
 ***
 
 # Workstations 
@@ -672,7 +666,6 @@ The workstations are basically ordinary desktop computers that you can log into 
  - 62 GB RAM
  - GPU 0: GeForce GTX 1660 SUPER
  - GPU 1: GeForce RTX 2080 Ti
-
 	 
 **boromir**
 
@@ -697,10 +690,10 @@ Now let's copy over our example exercises from the beehive using the `scp` (secu
 ```bash
 scp -r beehive.phys.ntu.edu.tw:~/bootCampEx/ . 
 ```
-`-r` is a *recursive* copy (allows you to copy folders)
-`beehive.phys.ntu.edu.tw` the address of the other computer where the files are located
-`~/bootCampEx/` source folder on remote machine (your home directory)
-`.` copy destination (the current directory)
+`-r` is a *recursive* copy (allows you to copy folders) 
+`beehive.phys.ntu.edu.tw` the address of the other computer where the files are located 
+`~/bootCampEx/` source folder on remote machine (your home directory) 
+`.` copy destination (the current directory) 
 
 You can then use the command line just like you would on your own computer. Since these are a shared resource, however, you should be courteous of the other users. First check if anyone else is running things using the `top` command. 
 
@@ -834,7 +827,6 @@ gpu                               0.04      1      0     10     11
 	- compute-0-11.local (1x Tesla K20c)
 	- compute-0-12.local (3x GeForce GTX 1080 Ti, 1x Tesla K40c)
 
-	
 ## List of nodes and specs
 
 Using the `qhost` command
@@ -859,7 +851,6 @@ compute-0-13   lx-amd64       28    2   28   28     62.7G
 ```
 
 ## Solutions to exercises
-
 
 ### Solution to ==_Exercise 1_==: Making a new directory 
 
@@ -965,7 +956,7 @@ for x in {20..40}; do echo $x $((x+1)); done
 
 - Change the job name to something more descriptive
 - Change the time limit to two hours
-- Have the script write the contents of the directory to the logfile
+- Have the script write the contents of the directory to the log file
 
 Then use `qsub` to submit your job and `qstat -j job_number` to check on it. 
 
@@ -1001,7 +992,7 @@ ls
 **Problem:**
 
 1. Create a new directory in `bootCampEx` called `new_job`
-2. copy `ex-hw4.f90` and `runFile.sh` into the new directory. 
+2. Copy `ex-hw4.f90` and `runFile.sh` into the new directory. 
 3. Change the job name in `runFile.sh` in `new_job/` 
 4. Submit both `job_ex/runFile.sh` and `new_job/runFile.sh` 
 5. Confirm that they are both running in the queue with `qstat`
@@ -1017,8 +1008,6 @@ cp ../job_ex/ex-hw4.f90 .
 qsub runFile.sh
 qstat
 ```
-
-
 
 ### Solution to ==_Exercise 8:_== Start two jobs
 
