@@ -581,7 +581,7 @@ echo " "
 echo "Job ended at `date`"
 ```
 Line 1 is the standard beginning of a bash script. Then we have a series of commands for the queue, these always start with `#$` so they appears as **comments** to bash. 
-`#$ -q cpu_short` means we want this job to be sent to the queue "cpu_short"  
+`#$ -q cpu_short` means we want this job to be sent to the queue "cpu_short" [More information on available queues](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#beehive-queues)  
 `#$ -l h_rt=1:00:00` set the time limit for this job to be 1 hour **wall clock time**  
 `#$ -cwd` means we want the job to run in the current working directory (where we executed `qsub`)  
 `#$ -N TestName` sets the name of the job to "TestName", this is optional, but it's useful when you have a lot of jobs to know what they each do  
