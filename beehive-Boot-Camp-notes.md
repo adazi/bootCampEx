@@ -749,6 +749,18 @@ Now log out (using `exit`) and log back in to check that your job is still runni
 ```
 The output that would have normally gone to the screen goes to the file `nohup.out`. (see that with `cat nohup.out`)
 
+To **view** all the processes you are currently running, use top with the `-u` flag to sort by username and `-bn1` to generate output and exit immediately (rather than live updating). 
+
+```bash
+top -bn1 -u username
+```
+
+To **kill** all the processes you have running in the background, you can use the command  
+
+```bash
+pkill -u username
+```
+
 ### Be `nice -19`
 
 When you're running anything long on the workstations, you should prepend `nice -19` to your command. This tells the computer that your job is low priority, so when other people log in to check on their jobs or edit files, it won't be super slow. 
