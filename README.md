@@ -7,3 +7,5 @@ To download these example files to your account on beehive, log into beehive and
 ```bash
 git clone https://github.com/adazi/bootCampEx.git
 ```
+
+The file `beehive-Boot-Camp-notes.md` has the lecture notes in markdown format (which will display nicely if you are viewing on the github website. If you download the repository, there is an HTML-rendered version of the notes (with section numbers): `beehive-Boot-Camp-notes.html` that you can view in a browser. 
