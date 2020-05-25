@@ -195,6 +195,8 @@ Resources/tips:
 
 Make a new directory called `dir1` and copy all files ending in .txt into that directory. (Hint: use the `*` wildcard.) 
 
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-1-making-a-new-directory)
+
 ## Redirecting output and chaining commands together 
 
 ### Pipe
@@ -254,6 +256,8 @@ Correct result for part 2:
 28
 82
 ```
+
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-2-using-pipe-to-string-together-unix-commands)
 
 ## Scripting
 
@@ -329,6 +333,8 @@ echo -e "test\nnewline\ttab\n"
 
 Modify `my_first_script.sh` so it prints your "Name's first shell script" and your current working directory to screen on separate lines. 
 
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-3-write-your-own-script)
+
 ### Variables
 
 Variables are flexibly typed do not need to be initialized. Use `$` access the value of a variable. 
@@ -402,6 +408,8 @@ Make a new script `oddsEvens.sh` that: loops over the numbers 1-30 and writes th
 
 **Bonus:** Have your script use the contents of `numbers.txt` instead of looping over the numbers 1-30. 
 
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-4-loops-and-conditionals)
+
 ### Arguments
 
 You can also pass arguments to your bash scripts like `./my_script.sh arg1 arg2`, but I will not cover that here. 
@@ -417,6 +425,8 @@ for x in {1..10}; do echo $x; echo "--"; done
 ### ==_Exercise 5:_== One liners
 
 Make a one-liner that writes the numbers 20-40 to a text file `res.txt` where each line says `20 21` `21 22`... `40 41`. (Hint: `$((x+3))` will evaluate the variable `x` plus 3). 
+
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-5-one-liners)
 
 ### An example script: startJobs.sh
 
@@ -608,6 +618,8 @@ Modify runFile.sh:
  - Have the script write the contents of the directory to the log file
 
 Then use `qsub` to submit your job and `qstat -j job_number` to check on it. 
+
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-6-modify-runfilesh)
  
 #### ==_Exercise 7:_== Make a second job directory
 
@@ -616,7 +628,9 @@ Then use `qsub` to submit your job and `qstat -j job_number` to check on it.
 3. Change the job name in `runFile.sh` in `new_job/` 
 4. Submit both `job_ex/runFile.sh` and `new_job/runFile.sh` 
 5. Confirm that they are both running in the queue with `qstat`
- 
+
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-7-make-a-second-job-directory)
+
 ### Advanced use of queue:
 
 ```bash
@@ -758,6 +772,8 @@ On aragorn:
 6. Check that both jobs are running again with `top`
 7. Wait a few minutes and check that they have finished successfully. 
 
+[Solution](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#solution-to-exercise-8-start-two-jobs)
+
 ## Workstation etiquette
 
 - Use `top` command to see who else is using the machine. 
@@ -858,6 +874,8 @@ cp *.txt dir1/
 ls dir1/
 ```
 
+[Back to exercise 1](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-1-making-a-new-directory)
+
 ### Solution to ==_Exercise 2_==: Using pipe to string together unix commands
 
 **Problem:**
@@ -883,6 +901,8 @@ Correct result for part 2:
 82
 ```
 
+[Back to exericse 2](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-2-using-pipe-to-string-together-unix-commands)
+
 ### Solution to ==_Exercise 3_==: Write your own script
 
 **Problem:** Modify `my_first_script.sh` so it prints your "Name's first shell script" and your current working directory to screen on separate lines. 
@@ -895,6 +915,8 @@ Correct result for part 2:
 
 echo "Someone's first shell script!"
 ```
+
+[Back to exercise 3](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-3-write-your-own-script)
 
 ### Solution to ==_Exercise 4_==: Loops and conditionals
 
@@ -934,6 +956,8 @@ do
 done
 ```
 
+[Back to exercise 4](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-4-loops-and-conditionals)
+
 ### Solution to ==_Exercise 5_==: One liners
 
 **Problem:** Make a one-liner that writes the numbers 20-40 to a text file `res.txt` where each line says `20 21`, `21 22`,... `40 41`. (Hint: `$((x+3))` will evaluate the variable x plus 3). 
@@ -943,6 +967,8 @@ done
 ```bash
 for x in {20..40}; do echo $x $((x+1)); done
 ```
+
+[Back to exercise 5](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-5-one-liners)
 
 ### Solution to ==_Exercise 6_==: Modify runFile.sh
 
@@ -981,6 +1007,8 @@ echo "Job ended at `date`"
 ls
 ```
 
+[Back to exercise 6](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-6-modify-runfilesh-5-minutes)
+
 ### Solution to ==_Exercise 7_==: Make a second job directory
 
 **Problem:**
@@ -1003,6 +1031,8 @@ qsub runFile.sh
 qstat
 ```
 
+[Back to exercise 7](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-7-make-a-second-job-directory)
+
 ### Solution to ==_Exercise 8:_== Start two jobs
 
 **Problem:** On aragorn:
@@ -1024,3 +1054,5 @@ cd ../new_job/
 nohup nice -19 ./runFile.sh &
 top
 ```
+
+[Back to exercise 8](https://github.com/adazi/bootCampEx/blob/master/beehive-Boot-Camp-notes.md#exercise-8-start-two-jobs)
