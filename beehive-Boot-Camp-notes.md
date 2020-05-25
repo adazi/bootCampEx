@@ -1,10 +1,9 @@
 # Beehive Boot Camp 
-**A workshop on how to use the linux command line, our group's cluster, and the queueing system.** 
-Workshop date: 2020-05-13 
-Notes updated: 2020-05-25 
-
-_Author:_ Adam Iaizzi	| iaizzi@bu.edu | www.iaizzi.me 
-[Ying-Jer Kao Group](https://yingjerkao.gitlab.io/) 
+**A workshop on how to use the linux command line, our group's cluster, and the queueing system.**  
+Workshop date: 2020-05-13  
+Notes updated: 2020-05-25  
+_Author:_ Adam Iaizzi	| iaizzi@bu.edu | www.iaizzi.me  
+[Ying-Jer Kao Group](https://yingjerkao.gitlab.io/)  
 National Taiwan University
 
 ## Prerequisites:
@@ -35,7 +34,6 @@ Outline for today:
 3. Bash shell scripts 
 4. The queuing system
 5. Using workstations
-
 
 # Using the terminal
 
@@ -69,7 +67,6 @@ If you are on a **windows** machine using an ssh client like putty, you should e
 ### Passwordless login using public key
 
 Rather than typing your password in every time you log in can use a **public key.** This key will work with `ssh`, `scp` and probably other commands. Since you won't be typing it all the time, you can choose a more complex (better) password. [This setup is pretty easy,](https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/) and once it's done, you won't have do to it again. 
-
 
 ## The command line
 
@@ -185,10 +182,8 @@ ls *.??
 
 ### Other useful linux commands
 
-`du -sh *` To see how much disk space is being used by files in the current directory. 
-
-`man` command will show you documentation for any command, for example `man cp` will list all the options for the `cp` command. 
-
+`du -sh *` To see how much disk space is being used by files in the current directory.  
+`man` command will show you documentation for any command, for example `man cp` will list all the options for the `cp` command.  
 
 Resources/tips: 
 
@@ -199,7 +194,6 @@ Resources/tips:
 ### ==_Exercise 1:_== Making a new directory
 
 Make a new directory called `dir1` and copy all files ending in .txt into that directory. (Hint: use the `*` wildcard.) 
-
 
 ## Redirecting output and chaining commands together 
 
@@ -577,10 +571,10 @@ echo " "
 echo "Job ended at `date`"
 ```
 Line 1 is the standard beginning of a bash script. Then we have a series of commands for the queue, these always start with `#$` so they appears as **comments** to bash. 
-`#$ -q cpu_short` means we want this job to be sent to the queue "cpu_short" 
-`#$ -l h_rt=1:00:00` set the time limit for this job to be 1 hour **wall clock time** 
-`#$ -cwd` means we want the job to run in the current working directory (where we executed `qsub`) 
-`#$ -N TestName` sets the name of the job to "TestName", this is optional, but it's useful when you have a lot of jobs to know what they each do 
+`#$ -q cpu_short` means we want this job to be sent to the queue "cpu_short"  
+`#$ -l h_rt=1:00:00` set the time limit for this job to be 1 hour **wall clock time**  
+`#$ -cwd` means we want the job to run in the current working directory (where we executed `qsub`)  
+`#$ -N TestName` sets the name of the job to "TestName", this is optional, but it's useful when you have a lot of jobs to know what they each do  
 
 From line **10** on it is just an ordinary shell script that compiles and runs the program. (You can compile the program in advance if you want). 
 
@@ -690,10 +684,10 @@ Now let's copy over our example exercises from the beehive using the `scp` (secu
 ```bash
 scp -r beehive.phys.ntu.edu.tw:~/bootCampEx/ . 
 ```
-`-r` is a *recursive* copy (allows you to copy folders) 
-`beehive.phys.ntu.edu.tw` the address of the other computer where the files are located 
-`~/bootCampEx/` source folder on remote machine (your home directory) 
-`.` copy destination (the current directory) 
+`-r` is a *recursive* copy (allows you to copy folders)  
+`beehive.phys.ntu.edu.tw` the address of the other computer where the files are located  
+`~/bootCampEx/` source folder on remote machine (your home directory)  
+`.` copy destination (the current directory)  
 
 You can then use the command line just like you would on your own computer. Since these are a shared resource, however, you should be courteous of the other users. First check if anyone else is running things using the `top` command. 
 
